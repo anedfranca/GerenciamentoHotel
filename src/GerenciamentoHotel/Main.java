@@ -56,12 +56,40 @@ public class Main {
 							
 							listaHospedes.add(hospede);
 							
-							System.out.println("Hospede Cadastrado com Sucesso!");
+							System.out.println("\nHospede Cadastrado com Sucesso!\n");
 							
 							System.out.println(listaHospedes.get(0));
 						break;
 						case 2:
-							//
+							sc.nextLine();
+							System.out.print("\nDigite o CPF do hospede que voce deseja editar: ");
+							String cpfEditar = sc.nextLine();
+							
+							// Encontrar Hospede
+							for (Hospede h : listaHospedes) {								
+								if (h.getCpf().equalsIgnoreCase(cpfEditar)) { // Encontrou
+									System.out.print("\nDigite o nome corrigido do hospede: ");
+									String nomeNovo = sc.nextLine();
+									
+									h.setNome(nomeNovo);
+
+									System.out.print("\nDigite a data de nascimento corrigida do hospede: ");
+									String dataNascNova = sc.nextLine();
+									
+									Date dataNova = new Date();
+									h.setDataNasc(dataNova);
+									
+									System.out.print("\nDigite o novo endereco do hospede: ");
+									String enderecoNovo = sc.nextLine();
+									h.setEndereco(enderecoNovo);
+									
+									System.out.print("\nDigite o telefone de contato corrigido do hospede: ");
+									String telefoneNovo = sc.nextLine();
+									h.setNumeroContato(telefoneNovo);
+									
+									System.out.println("\nHospede Cadastrado com Sucesso!\n"); // TESTAR FUNCIONALIDADE - PRECISO CRIAR METODO STR
+								}
+							}
 						break;
 						case 3:
 							//
