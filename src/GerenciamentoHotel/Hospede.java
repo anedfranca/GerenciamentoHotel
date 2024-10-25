@@ -1,11 +1,13 @@
 package GerenciamentoHotel;
 
 import java.util.Date;
+import java.util.ArrayList;
 
 public class Hospede extends Pessoa {
 	private Date dataNasc;
 	private String endereco;
 	private String numeroContato;
+	//private ArrayList<reserva> historico = new ArrayList();
 	
 	public Hospede() {
 		super();
@@ -16,6 +18,15 @@ public class Hospede extends Pessoa {
 		this.setDataNasc(d);
 		this.setEndereco(e);
 		this.setNumeroContato(nc);
+	}
+	
+	public String toString() {
+		System.out.println("Nome: " + this.getNome());
+		System.out.println("CPF: " + this.getCpf());
+		System.out.println("Data de nascimento: " + this.getDataNasc());
+		System.out.println("Numero de contato: " + this.getNumeroContato());
+		System.out.println("Endereço: " + this.getEndereco());
+		return "";
 	}
 
 	public Date getDataNasc() {
@@ -41,5 +52,7 @@ public class Hospede extends Pessoa {
 	public void setNumeroContato(String numeroContato) {
 		this.numeroContato = numeroContato;
 	}
+	
+	
 
 }

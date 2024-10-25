@@ -57,10 +57,10 @@ public class Main {
 							listaHospedes.add(hospede);
 							
 							System.out.println("\nHospede Cadastrado com Sucesso!\n");
-							
-							System.out.println(listaHospedes.get(0));
 						break;
 						case 2:
+							Boolean achou = false;
+							
 							sc.nextLine();
 							System.out.print("\nDigite o CPF do hospede que voce deseja editar: ");
 							String cpfEditar = sc.nextLine();
@@ -68,6 +68,10 @@ public class Main {
 							// Encontrar Hospede
 							for (Hospede h : listaHospedes) {								
 								if (h.getCpf().equalsIgnoreCase(cpfEditar)) { // Encontrou
+									achou = true;
+									
+									System.out.println("Hospede " + h.getNome() + ", encontrado com sucesso!");
+									
 									System.out.print("\nDigite o nome corrigido do hospede: ");
 									String nomeNovo = sc.nextLine();
 									
@@ -87,8 +91,12 @@ public class Main {
 									String telefoneNovo = sc.nextLine();
 									h.setNumeroContato(telefoneNovo);
 									
-									System.out.println("\nHospede Cadastrado com Sucesso!\n"); // TESTAR FUNCIONALIDADE - PRECISO CRIAR METODO STR
+									System.out.println("\nHospede Editado com Sucesso!\n");
+									break;
 								}
+							}
+							if (!achou) {
+								System.out.println("\nCPF nao encontrado...\n");								
 							}
 						break;
 						case 3:
