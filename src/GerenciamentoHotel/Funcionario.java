@@ -15,6 +15,16 @@ public class Funcionario extends Pessoa {
 		super(nome, cpf);
 		this.setCargo(cargo);
 		this.setTurnoDeTrabalho(tdt);
+		this.setValorHoras(50.00);
+		this.setQtdeHorasTrabalhadas(0);
+	}
+	
+	public String toString() {
+		System.out.println("Nome: " + this.getNome());
+		System.out.println("CPF: " + this.getCpf());
+		System.out.println("Cargo: " + this.getCargo());
+		System.out.println("Turno de Trabalho: " + this.getTurnoDeTrabalho());
+		return "";
 	}
 
 	public Integer getQtdeHorasTrabalhadas() {
@@ -55,6 +65,14 @@ public class Funcionario extends Pessoa {
 
 	public void setTurnoDeTrabalho(String turnoDeTrabalho) {
 		this.turnoDeTrabalho = turnoDeTrabalho;
+	}
+	
+	public Double calculaSalario() {
+		Double salario = this.getValorHoras() * this.getQtdeHorasTrabalhadas();
+		
+		this.setSalario(salario);
+		
+		return this.getSalario();
 	}
 	
 }

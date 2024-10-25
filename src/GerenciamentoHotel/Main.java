@@ -148,36 +148,31 @@ public class Main {
 						Boolean achou = false;
 						
 						sc.nextLine();
-						System.out.print("\nDigite o CPF do hospede que voce deseja editar: ");
+						System.out.print("\nDigite o CPF do funcionario que voce deseja editar: ");
 						String cpfEditar = sc.nextLine();
 						
-						// Encontrar Hospede
-						for (Hospede h : listaHospedes) {								
-							if (h.getCpf().equalsIgnoreCase(cpfEditar)) { // Encontrou
+						// Encontrar Funcionario
+						for (Funcionario f : listaFuncionarios) {								
+							if (f.getCpf().equalsIgnoreCase(cpfEditar)) { // Encontrou
 								achou = true;
 								
-								System.out.println("Hospede " + h.getNome() + ", encontrado com sucesso!");
+								System.out.println("Funcionario " + f.getNome() + ", encontrado com sucesso!");
 								
-								System.out.print("\nDigite o nome corrigido do hospede: ");
+								System.out.print("\nDigite o nome corrigido do funcionario: ");
 								String nomeNovo = sc.nextLine();
 								
-								h.setNome(nomeNovo);
+								f.setNome(nomeNovo);
 
-								System.out.print("\nDigite a data de nascimento corrigida do hospede: ");
-								String dataNascNova = sc.nextLine();
+								System.out.print("\nDigite o cargo do funcionario: ");
+								String cargoNovo = sc.nextLine();
 								
-								Date dataNova = new Date();
-								h.setDataNasc(dataNova);
+								f.setCargo(cargoNovo);
 								
-								System.out.print("\nDigite o novo endereco do hospede: ");
-								String enderecoNovo = sc.nextLine();
-								h.setEndereco(enderecoNovo);
+								System.out.print("\nDigite o turno de trabalho do funcionario: ");
+								String turnoNovo = sc.nextLine();
+								f.setTurnoDeTrabalho(turnoNovo);
 								
-								System.out.print("\nDigite o telefone de contato corrigido do hospede: ");
-								String telefoneNovo = sc.nextLine();
-								h.setNumeroContato(telefoneNovo);
-								
-								System.out.println("\nHospede Editado com Sucesso!\n");
+								System.out.println("\nFuncionario Editado com Sucesso!\n");
 								break;
 							}
 						}
@@ -187,9 +182,49 @@ public class Main {
 					break;
 					case 3:
 						// Cadastrar horas
+						sc.nextLine();
+						Boolean achouFunc = false;
+						System.out.print("\nDigite o CPF do funcionario que voce deseja cadastrar as horas: ");
+						String cpfFunc = sc.nextLine(); 
+						
+						for (Funcionario f : listaFuncionarios) {
+							if (f.getCpf().equalsIgnoreCase(cpfFunc)) {
+								achouFunc = true;
+								
+								System.out.print("\nDigite a quantidade de horas trabalhadas: ");
+								Integer horasTrabalhadas = sc.nextInt();
+								sc.nextLine();
+								
+								f.setQtdeHorasTrabalhadas(horasTrabalhadas);
+								break;
+							}
+						}
+						
+						if (!achouFunc) {
+							System.out.println("\nCPF nao encontrado...\n");
+						}
+						
 					break;
 					case 4:
 						// Calcular Salario
+						sc.nextLine();
+						Boolean achouF = false;
+						System.out.print("\nDigite o CPF do funcionario que voce deseja calcular o salario: ");
+						String cpfF = sc.nextLine(); 
+						
+						for (Funcionario f : listaFuncionarios) {
+							if (f.getCpf().equalsIgnoreCase(cpfF)) {
+								achouF = true;
+								
+								System.out.println(f.calculaSalario());
+								break;
+							}
+						}
+						
+						if (!achouF) {
+							System.out.println("\nCPF nao encontrado...\n");
+						}
+						
 					break;
 					case 5:
 						// Voltar
