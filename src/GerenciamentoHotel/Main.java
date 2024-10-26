@@ -25,7 +25,53 @@ public class Main {
 			
 			switch (op1) {
 				case 1:
-					//
+					System.out.println("\n1. Cadastrar novo Quarto");
+                    System.out.println("2. Listar Quartos Disponíveis");
+                    System.out.println("3. Atualizar Status de um Quarto");
+                    System.out.println("4. Voltar para menu principal");
+                    
+                    System.out.print("Digite a opção desejada: ");
+                    op2 = sc.nextInt();
+                    
+                    switch (op2) {
+                        case 1: 
+                            sc.nextLine(); 
+                            System.out.print("\nDigite o número do quarto: ");
+                            int numero = sc.nextInt();
+                            sc.nextLine();
+                            System.out.print("Digite o tipo do quarto (ex: solteiro, casal, suíte): ");
+                            String tipo = sc.nextLine();
+                            System.out.print("Digite a capacidade do quarto: ");
+                            int capacidade = sc.nextInt();
+                            System.out.print("Digite o preço da diária: ");
+                            double preco = sc.nextDouble();
+                            
+                            Quarto novoQuarto = new Quarto(numero, tipo, capacidade, preco);
+                            gerenciamentoQuartoService.cadastrarQuarto(novoQuarto);
+                            System.out.println("Quarto cadastrado com sucesso!");
+                        break;
+                        
+                        case 2:
+                            System.out.println("Quartos disponíveis:");
+                            for (Quarto quarto : gerenciamentoQuartoService.listarQuartosDisponiveis()) {
+                                System.out.println(quarto);
+                            }
+                        break;
+                        
+                        case 3: 
+                            System.out.print("\nDigite o número do quarto para atualizar o status: ");
+                            int numeroQuarto = sc.nextInt();
+                            sc.nextLine(); 
+                            System.out.print("Digite o novo status (disponível, ocupado, em manutenção): ");
+                            String novoStatus = sc.nextLine();
+                            
+                            gerenciamentoQuartoService.atualizarStatusQuarto(numeroQuarto, novoStatus);
+                            System.out.println("Status do quarto atualizado com sucesso!");
+                        break;
+                        
+                        case 4: 
+                        break;
+                    }
 				break;
 				case 2:
 					System.out.println("\n1. Cadastrar novo Hospede");
