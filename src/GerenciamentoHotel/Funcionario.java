@@ -4,7 +4,75 @@ public class Funcionario extends Pessoa {
 	private String cargo;
 	private Double salario;
 	private String turnoDeTrabalho;
+	private Integer qtdeHorasTrabalhadas;
+	private Double valorHoras;
 	
+	public Funcionario() {
+		super();
+	}
 	
+	public Funcionario(String nome, String cpf, String cargo, String tdt) {
+		super(nome, cpf);
+		this.setCargo(cargo);
+		this.setTurnoDeTrabalho(tdt);
+		this.setValorHoras(50.00);
+		this.setQtdeHorasTrabalhadas(0);
+	}
+	
+	public String toString() {
+		System.out.println("Nome: " + this.getNome());
+		System.out.println("CPF: " + this.getCpf());
+		System.out.println("Cargo: " + this.getCargo());
+		System.out.println("Turno de Trabalho: " + this.getTurnoDeTrabalho());
+		return "";
+	}
+
+	public Integer getQtdeHorasTrabalhadas() {
+		return qtdeHorasTrabalhadas;
+	}
+
+	public void setQtdeHorasTrabalhadas(Integer qtdeHorasTrabalhadas) {
+		this.qtdeHorasTrabalhadas = qtdeHorasTrabalhadas;
+	}
+
+	public Double getValorHoras() {
+		return valorHoras;
+	}
+
+	public void setValorHoras(Double valorHoras) {
+		this.valorHoras = valorHoras;
+	}
+
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+
+	public Double getSalario() {
+		return salario;
+	}
+
+	public void setSalario(Double salario) {
+		this.salario = salario;
+	}
+
+	public String getTurnoDeTrabalho() {
+		return turnoDeTrabalho;
+	}
+
+	public void setTurnoDeTrabalho(String turnoDeTrabalho) {
+		this.turnoDeTrabalho = turnoDeTrabalho;
+	}
+	
+	public Double calculaSalario() {
+		Double salario = this.getValorHoras() * this.getQtdeHorasTrabalhadas();
+		
+		this.setSalario(salario);
+		
+		return this.getSalario();
+	}
 	
 }
