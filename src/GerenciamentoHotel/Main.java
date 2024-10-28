@@ -40,20 +40,26 @@ public class Main {
 					switch (op2) {
 						case 1:
 							sc.nextLine();
+							
+							Hospede hospede = new Hospede();
+							
 							System.out.print("\nDigite o nome do hospede: ");
-							String nome = sc.nextLine();
+							hospede.setNome(sc.nextLine());
+							
 							System.out.print("\nDigite o CPF do hospede: ");
-							String cpf = sc.nextLine();
+							hospede.setCpf(sc.nextLine());	
+
 							System.out.print("\nDigite a data de nascimento do hospede: ");
 							String dataNasc = sc.nextLine();
-							System.out.print("\nDigite o endereco do hospede: ");
-							String endereco = sc.nextLine();
-							System.out.print("\nDigite o telefone de contato do hospede: ");
-							String telefone = sc.nextLine();
-							
 							Date data = new Date();
 							
-							Hospede hospede = new Hospede(nome, cpf, data, endereco, telefone);
+							hospede.setDataNasc(data);
+							
+							System.out.print("\nDigite o endereco do hospede: ");
+							hospede.setEndereco(sc.nextLine());
+							
+							System.out.print("\nDigite o telefone de contato do hospede: ");
+							hospede.setNumeroContato(sc.nextLine());
 							
 							listaHospedes.add(hospede);
 							
@@ -128,6 +134,7 @@ public class Main {
 					switch (op2) {
 					case 1:
 						// Cadastrar Funcionario
+						// FALTA CRIAR O FUNCIONARIO USANDO SETSSSSS
 						sc.nextLine();
 						System.out.print("\nDigite o nome do funcionario: ");
 						String nome = sc.nextLine();

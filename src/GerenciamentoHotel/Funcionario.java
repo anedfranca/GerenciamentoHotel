@@ -48,6 +48,7 @@ public class Funcionario extends Pessoa {
 	}
 
 	public void setCargo(String cargo) {
+		cargo = trataEntrada(cargo);
 		this.cargo = cargo;
 	}
 
@@ -64,6 +65,7 @@ public class Funcionario extends Pessoa {
 	}
 
 	public void setTurnoDeTrabalho(String turnoDeTrabalho) {
+		turnoDeTrabalho = trataEntrada(turnoDeTrabalho);
 		this.turnoDeTrabalho = turnoDeTrabalho;
 	}
 	

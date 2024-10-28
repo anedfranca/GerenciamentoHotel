@@ -42,6 +42,7 @@ public class Hospede extends Pessoa {
 	}
 
 	public void setEndereco(String endereco) {
+		endereco = trataEntrada(endereco);
 		this.endereco = endereco;
 	}
 
@@ -50,6 +51,7 @@ public class Hospede extends Pessoa {
 	}
 
 	public void setNumeroContato(String numeroContato) {
+		numeroContato = trataEntrada(numeroContato);
 		this.numeroContato = numeroContato;
 	}
 	
