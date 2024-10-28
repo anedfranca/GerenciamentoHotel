@@ -26,7 +26,7 @@ public class Main {
 			
 			switch (op1) {
 				case 1:
-					//
+					// pedro
 				break;
 				case 2:
 					System.out.println("\n1. Cadastrar novo Hospede");
@@ -34,7 +34,7 @@ public class Main {
 					System.out.println("3. Historico de estadias");
 					System.out.println("4. Voltar para menu princial");
 					
-					System.out.print("Digite a opcao desejada: ");
+					System.out.print("\nDigite a opcao desejada: ");
 					op2 = sc.nextInt();
 					
 					switch (op2) {
@@ -106,6 +106,8 @@ public class Main {
 						case 4:
 							//
 						break;
+						default:
+							System.out.println("Opção inválida!\n");
 					}
 				break;
 				case 3:
@@ -118,9 +120,9 @@ public class Main {
 					System.out.println("2. Editar Funcionario");
 					System.out.println("3. Cadastrar horas");
 					System.out.println("4. Calcular salario");
-					System.out.println("5. Voltar\n");
+					System.out.println("5. Voltar");
 					
-					System.out.print("Digite a opcao desejada: ");
+					System.out.print("\nDigite a opcao desejada: ");
 					op2 = sc.nextInt();
 					
 					switch (op2) {
@@ -229,6 +231,8 @@ public class Main {
 					case 5:
 						// Voltar
 					break;
+					default:
+						System.out.println("Opção inválida!\n");
 				}
 				break;
 				case 5:
