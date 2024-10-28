@@ -1,13 +1,13 @@
 package GerenciamentoHotel;
 
-public class Quarto {
+public class Quartos {
     private int numero;
     private String tipo;
     private int capacidade;
     private double preco;
     private String status;
 
-    public Quarto(int numero, String tipo, int capacidade, double preco) {
+    public Quartos(int numero, String tipo, int capacidade, double preco) {
         this.numero = numero;
         this.tipo = tipo;
         this.capacidade = capacidade;
@@ -27,4 +27,3 @@ public class Quarto {
         return "Quarto " + numero + " - Tipo: " + tipo + ", Capacidade: " + capacidade + ", Preço: " + preco + ", Status: " + status;
     }
 }
-
