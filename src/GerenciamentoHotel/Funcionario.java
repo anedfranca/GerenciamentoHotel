@@ -4,8 +4,8 @@ public class Funcionario extends Pessoa {
 	private String cargo;
 	private Double salario;
 	private String turnoDeTrabalho;
-	private Integer qtdeHorasTrabalhadas;
-	private Double valorHoras;
+	private Integer qtdeHorasTrabalhadas = 0;
+	private Double valorHoras = 50.0;
 	
 	public Funcionario() {
 		super();
@@ -15,8 +15,6 @@ public class Funcionario extends Pessoa {
 		super(nome, cpf);
 		this.setCargo(cargo);
 		this.setTurnoDeTrabalho(tdt);
-		this.setValorHoras(50.00);
-		this.setQtdeHorasTrabalhadas(0);
 	}
 	
 	public String toString() {
