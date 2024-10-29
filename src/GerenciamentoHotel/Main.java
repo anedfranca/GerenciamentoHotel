@@ -40,20 +40,26 @@ public class Main {
 					switch (op2) {
 						case 1:
 							sc.nextLine();
+							
+							Hospede hospede = new Hospede();
+							
 							System.out.print("\nDigite o nome do hospede: ");
-							String nome = sc.nextLine();
+							hospede.setNome(sc.nextLine());
+							
 							System.out.print("\nDigite o CPF do hospede: ");
-							String cpf = sc.nextLine();
+							hospede.setCpf(sc.nextLine());	
+
 							System.out.print("\nDigite a data de nascimento do hospede: ");
 							String dataNasc = sc.nextLine();
-							System.out.print("\nDigite o endereco do hospede: ");
-							String endereco = sc.nextLine();
-							System.out.print("\nDigite o telefone de contato do hospede: ");
-							String telefone = sc.nextLine();
-							
 							Date data = new Date();
 							
-							Hospede hospede = new Hospede(nome, cpf, data, endereco, telefone);
+							hospede.setDataNasc(data);
+							
+							System.out.print("\nDigite o endereco do hospede: ");
+							hospede.setEndereco(sc.nextLine());
+							
+							System.out.print("\nDigite o telefone de contato do hospede: ");
+							hospede.setNumeroContato(sc.nextLine());
 							
 							listaHospedes.add(hospede);
 							
@@ -127,22 +133,23 @@ public class Main {
 					
 					switch (op2) {
 					case 1:
-						// Cadastrar Funcionario
+						// Cadastrar Funcionario						
+						Funcionario funcionario = new Funcionario();
+						
 						sc.nextLine();
 						System.out.print("\nDigite o nome do funcionario: ");
-						String nome = sc.nextLine();
-						System.out.print("\nDigite o CPF do funcionario: ");
-						String cpf = sc.nextLine();
-						System.out.print("\nDigite o cargo do funcionario: ");
-						String cargo = sc.nextLine();
-						System.out.print("\nDigite o turno de trabalho: ");
-						String turnoDeTrabalho = sc.nextLine();
+						funcionario.setNome(sc.nextLine());
 						
-						Funcionario funcionario = new Funcionario(nome, cpf, cargo, turnoDeTrabalho);
+						System.out.print("\nDigite o CPF do funcionario: ");
+						funcionario.setCpf(sc.nextLine());
+						
+						System.out.print("\nDigite o cargo do funcionario: ");
+						funcionario.setCargo(sc.nextLine());
+						
+						System.out.print("\nDigite o turno de trabalho: ");
+						funcionario.setTurnoDeTrabalho(sc.nextLine());
 						
 						listaFuncionarios.add(funcionario);
-						
-						System.out.println(listaFuncionarios.get(0));
 						
 						System.out.println("\nFuncioario " + funcionario.getNome() + ", cadastrado com Sucesso!\n");
 					break;
