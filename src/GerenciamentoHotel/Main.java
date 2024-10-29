@@ -133,23 +133,23 @@ public class Main {
 					
 					switch (op2) {
 					case 1:
-						// Cadastrar Funcionario
-						// FALTA CRIAR O FUNCIONARIO USANDO SETSSSSS
+						// Cadastrar Funcionario						
+						Funcionario funcionario = new Funcionario();
+						
 						sc.nextLine();
 						System.out.print("\nDigite o nome do funcionario: ");
-						String nome = sc.nextLine();
-						System.out.print("\nDigite o CPF do funcionario: ");
-						String cpf = sc.nextLine();
-						System.out.print("\nDigite o cargo do funcionario: ");
-						String cargo = sc.nextLine();
-						System.out.print("\nDigite o turno de trabalho: ");
-						String turnoDeTrabalho = sc.nextLine();
+						funcionario.setNome(sc.nextLine());
 						
-						Funcionario funcionario = new Funcionario(nome, cpf, cargo, turnoDeTrabalho);
+						System.out.print("\nDigite o CPF do funcionario: ");
+						funcionario.setCpf(sc.nextLine());
+						
+						System.out.print("\nDigite o cargo do funcionario: ");
+						funcionario.setCargo(sc.nextLine());
+						
+						System.out.print("\nDigite o turno de trabalho: ");
+						funcionario.setTurnoDeTrabalho(sc.nextLine());
 						
 						listaFuncionarios.add(funcionario);
-						
-						System.out.println(listaFuncionarios.get(0));
 						
 						System.out.println("\nFuncioario " + funcionario.getNome() + ", cadastrado com Sucesso!\n");
 					break;
