@@ -1,15 +1,14 @@
 package GerenciamentoHotel;
 
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.Date;
 
 public class Main {
 
 	public static void main(String[] args) {
 		
-		ArrayList<Hospede> listaHospedes = new ArrayList();
-		ArrayList<Funcionario> listaFuncionarios = new ArrayList();
+		GerenciadorHospedesService gerenciadorHospedesService = new GerenciadorHospedesService();
+		GerenciadorFuncionariosService gerenciadorFuncionariosService = new GerenciadorFuncionariosService();
+		
 		Scanner sc = new Scanner(System.in);
 		int op1, op2;
 		
@@ -38,79 +37,25 @@ public class Main {
 					op2 = sc.nextInt();
 					
 					switch (op2) {
-						case 1:
+						case 1: // cadastrar hospede
 							sc.nextLine();
 							
-							Hospede hospede = new Hospede();
+							gerenciadorHospedesService.cadastrarHospede();
 							
-							System.out.print("\nDigite o nome do hospede: ");
-							hospede.setNome(sc.nextLine());
-							
-							System.out.print("\nDigite o CPF do hospede: ");
-							hospede.setCpf(sc.nextLine());	
-
-							System.out.print("\nDigite a data de nascimento do hospede: ");
-							String dataNasc = sc.nextLine();
-							Date data = new Date();
-							
-							hospede.setDataNasc(data);
-							
-							System.out.print("\nDigite o endereco do hospede: ");
-							hospede.setEndereco(sc.nextLine());
-							
-							System.out.print("\nDigite o telefone de contato do hospede: ");
-							hospede.setNumeroContato(sc.nextLine());
-							
-							listaHospedes.add(hospede);
-							
-							System.out.println("\nHospede Cadastrado com Sucesso!\n");
 						break;
-						case 2:
-							Boolean achou = false;
-							
+						case 2: // Editar um hospede
 							sc.nextLine();
 							System.out.print("\nDigite o CPF do hospede que voce deseja editar: ");
 							String cpfEditar = sc.nextLine();
 							
-							// Encontrar Hospede
-							for (Hospede h : listaHospedes) {								
-								if (h.getCpf().equalsIgnoreCase(cpfEditar)) { // Encontrou
-									achou = true;
-									
-									System.out.println("Hospede " + h.getNome() + ", encontrado com sucesso!");
-									
-									System.out.print("\nDigite o nome corrigido do hospede: ");
-									String nomeNovo = sc.nextLine();
-									
-									h.setNome(nomeNovo);
-
-									System.out.print("\nDigite a data de nascimento corrigida do hospede: ");
-									String dataNascNova = sc.nextLine();
-									
-									Date dataNova = new Date();
-									h.setDataNasc(dataNova);
-									
-									System.out.print("\nDigite o novo endereco do hospede: ");
-									String enderecoNovo = sc.nextLine();
-									h.setEndereco(enderecoNovo);
-									
-									System.out.print("\nDigite o telefone de contato corrigido do hospede: ");
-									String telefoneNovo = sc.nextLine();
-									h.setNumeroContato(telefoneNovo);
-									
-									System.out.println("\nHospede Editado com Sucesso!\n");
-									break;
-								}
-							}
-							if (!achou) {
-								System.out.println("\nCPF nao encontrado...\n");								
-							}
+							gerenciadorHospedesService.editarHospede(cpfEditar);
+							
 						break;
 						case 3:
-							//
+							// precisa ter resereva pronto!!
 						break;
 						case 4:
-							//
+							// voltar
 						break;
 						default:
 							System.out.println("Opção inválida!\n");
@@ -119,8 +64,7 @@ public class Main {
 				case 3:
 					//
 				break;
-				case 4:
-					// Funcionarios
+				case 4: // Funcionarios
 					
 					System.out.println("\n1. Cadastrar novo Funcionario");
 					System.out.println("2. Editar Funcionario");
@@ -132,111 +76,38 @@ public class Main {
 					op2 = sc.nextInt();
 					
 					switch (op2) {
-					case 1:
-						// Cadastrar Funcionario						
-						Funcionario funcionario = new Funcionario();
-						
+					case 1: // Cadastrar Funcionario
 						sc.nextLine();
-						System.out.print("\nDigite o nome do funcionario: ");
-						funcionario.setNome(sc.nextLine());
 						
-						System.out.print("\nDigite o CPF do funcionario: ");
-						funcionario.setCpf(sc.nextLine());
-						
-						System.out.print("\nDigite o cargo do funcionario: ");
-						funcionario.setCargo(sc.nextLine());
-						
-						System.out.print("\nDigite o turno de trabalho: ");
-						funcionario.setTurnoDeTrabalho(sc.nextLine());
-						
-						listaFuncionarios.add(funcionario);
-						
-						System.out.println("\nFuncioario " + funcionario.getNome() + ", cadastrado com Sucesso!\n");
+						gerenciadorFuncionariosService.cadastrarFuncionario();
 					break;
-					case 2:
-						Boolean achou = false;
-						
+					case 2: // Editar Funcionario
 						sc.nextLine();
 						System.out.print("\nDigite o CPF do funcionario que voce deseja editar: ");
-						String cpfEditar = sc.nextLine();
+						String cpf = sc.nextLine();
 						
-						// Encontrar Funcionario
-						for (Funcionario f : listaFuncionarios) {								
-							if (f.getCpf().equalsIgnoreCase(cpfEditar)) { // Encontrou
-								achou = true;
-								
-								System.out.println("Funcionario " + f.getNome() + ", encontrado com sucesso!");
-								
-								System.out.print("\nDigite o nome corrigido do funcionario: ");
-								String nomeNovo = sc.nextLine();
-								
-								f.setNome(nomeNovo);
-
-								System.out.print("\nDigite o cargo do funcionario: ");
-								String cargoNovo = sc.nextLine();
-								
-								f.setCargo(cargoNovo);
-								
-								System.out.print("\nDigite o turno de trabalho do funcionario: ");
-								String turnoNovo = sc.nextLine();
-								f.setTurnoDeTrabalho(turnoNovo);
-								
-								System.out.println("\nFuncionario Editado com Sucesso!\n");
-								break;
-							}
-						}
-						if (!achou) {
-							System.out.println("\nCPF nao encontrado...\n");								
-						}
+						gerenciadorFuncionariosService.editarfuncionario(cpf);
 					break;
-					case 3:
-						// Cadastrar horas
+					case 3: // Cadastrar horas
 						sc.nextLine();
-						Boolean achouFunc = false;
+
 						System.out.print("\nDigite o CPF do funcionario que voce deseja cadastrar as horas: ");
 						String cpfFunc = sc.nextLine(); 
 						
-						for (Funcionario f : listaFuncionarios) {
-							if (f.getCpf().equalsIgnoreCase(cpfFunc)) {
-								achouFunc = true;
-								
-								System.out.print("\nDigite a quantidade de horas trabalhadas: ");
-								Integer horasTrabalhadas = sc.nextInt();
-								sc.nextLine();
-								
-								f.setQtdeHorasTrabalhadas(horasTrabalhadas);
-								break;
-							}
-						}
-						
-						if (!achouFunc) {
-							System.out.println("\nCPF nao encontrado...\n");
-						}
+						gerenciadorFuncionariosService.cadastrarHoras(cpfFunc);
 						
 					break;
 					case 4:
 						// Calcular Salario
 						sc.nextLine();
-						Boolean achouF = false;
+
 						System.out.print("\nDigite o CPF do funcionario que voce deseja calcular o salario: ");
 						String cpfF = sc.nextLine(); 
 						
-						for (Funcionario f : listaFuncionarios) {
-							if (f.getCpf().equalsIgnoreCase(cpfF)) {
-								achouF = true;
-								
-								System.out.println(f.calculaSalario());
-								break;
-							}
-						}
-						
-						if (!achouF) {
-							System.out.println("\nCPF nao encontrado...\n");
-						}
+						gerenciadorFuncionariosService.calcularSalario(cpfF);
 						
 					break;
-					case 5:
-						// Voltar
+					case 5: // Voltar
 					break;
 					default:
 						System.out.println("Opção inválida!\n");
