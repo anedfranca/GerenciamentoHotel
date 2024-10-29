@@ -47,13 +47,13 @@ public class Main {
                             System.out.print("Digite o preço da diária: ");
                             double preco = sc.nextDouble();
                             
-                            Quartos novoQuarto = new Quartos(numero, tipo, capacidade, preco);
+                            Quarto novoQuarto = new Quarto(numero, tipo, capacidade, preco);
                             gerenciamentoQuartos.cadastrarQuarto(novoQuarto);
                         break;
                         
                         case 2:
                             System.out.println("Quartos disponíveis:");
-                            for (Quartos quarto : gerenciamentoQuartos.listarQuartosDisponiveis()) {
+                            for (Quarto quarto : gerenciamentoQuartos.listarQuartosDisponiveis()) {
                                 System.out.println(quarto);
                             }
                         break;
