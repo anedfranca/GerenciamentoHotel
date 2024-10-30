@@ -2,6 +2,7 @@ package GerenciamentoHotel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class GerenciamentoQuartoService {
     private List<Quarto> quartos = new ArrayList<>();
@@ -31,4 +32,83 @@ public class GerenciamentoQuartoService {
         }
         System.out.println("Quarto não encontrado.");
     }
+
+    static int lerInteiroPositivo(String mensagem, Scanner sc) {
+        int valor = 0;
+        do {
+            System.out.print(mensagem);
+            String entrada = sc.nextLine().trim();
+            
+            if (entrada.isEmpty()) {
+                System.out.println("Entrada vazia. Por favor, insira um número inteiro positivo.");
+                continue;
+            }
+
+            try {
+                valor = Integer.parseInt(entrada);
+                if (valor <= 0) {
+                    System.out.println("Entrada inválida. O número deve ser positivo.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Entrada inválida. Por favor, insira um número inteiro.");
+            }
+        } while (valor <= 0);
+        return valor;
+    }
+
+    static double lerDoublePositivo(String mensagem, Scanner sc) {
+        double valor = 0;
+        do {
+            System.out.print(mensagem);
+            String entrada = sc.nextLine().trim();
+
+            if (entrada.isEmpty()) {
+                System.out.println("Entrada vazia. Por favor, insira um número decimal positivo.");
+                continue;
+            }
+
+            try {
+                valor = Double.parseDouble(entrada);
+                if (valor <= 0) {
+                    System.out.println("Entrada inválida. O número deve ser positivo.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Entrada inválida. Por favor, insira um número decimal.");
+            }
+        } while (valor <= 0);
+        return valor;
+    }
+
+    static String lerTipoQuarto(String mensagem, Scanner sc) {
+        String tipo;
+        do {
+            System.out.print(mensagem);
+            tipo = sc.nextLine().toLowerCase().trim();
+            if (tipo.isEmpty()) {
+                System.out.println("Entrada vazia. Digite um dos tipos válidos: solteiro, casal ou suíte.");
+                continue;
+            }
+            if (!(tipo.equals("solteiro") || tipo.equals("casal") || tipo.equals("suíte"))) {
+                System.out.println("Entrada inválida. Digite um dos tipos válidos: solteiro, casal ou suíte.");
+            }
+        } while (!(tipo.equals("solteiro") || tipo.equals("casal") || tipo.equals("suíte")));
+        return tipo;
+    }
+
+    static String lerStatusQuarto(String mensagem, Scanner sc) {
+        String status;
+        do {
+            System.out.print(mensagem);
+            status = sc.nextLine().toLowerCase().trim();
+            if (status.isEmpty()) {
+                System.out.println("Entrada vazia. Digite um dos status válidos: disponível, ocupado ou em manutenção.");
+                continue;
+            }
+            if (!(status.equals("disponível") || status.equals("ocupado") || status.equals("em manutenção"))) {
+                System.out.println("Entrada inválida. Digite um dos status válidos: disponível, ocupado ou em manutenção.");
+            }
+        } while (!(status.equals("disponível") || status.equals("ocupado") || status.equals("em manutenção")));
+        return status;
+    }
+    
 }
