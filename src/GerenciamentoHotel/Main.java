@@ -9,12 +9,12 @@ public class Main {
 		GerenciamentoQuartoService gerenciamentoQuartos = new GerenciamentoQuartoService();
 		GerenciadorHospedesService gerenciadorHospedesService = new GerenciadorHospedesService();
 		GerenciadorFuncionariosService gerenciadorFuncionariosService = new GerenciadorFuncionariosService();
-		
+		private static Hospede[] listaHospedes;
+    
 		Scanner sc = new Scanner(System.in);
 		int op1, op2;
 		
 		while (true) {
-
 			System.out.println("\n1. Quartos");
 			System.out.println("2. Hospedes");
 			System.out.println("3. Reservas");
@@ -34,19 +34,14 @@ public class Main {
                     
                     System.out.print("Digite a opção desejada: ");
                     op2 = sc.nextInt();
+                    sc.nextLine(); 
                     
                     switch (op2) {
-                        case 1: 
-                            sc.nextLine(); 
-                            System.out.print("\nDigite o número do quarto: ");
-                            int numero = sc.nextInt();
-                            sc.nextLine();
-                            System.out.print("Digite o tipo do quarto (ex: solteiro, casal, suíte): ");
-                            String tipo = sc.nextLine();
-                            System.out.print("Digite a capacidade do quarto: ");
-                            int capacidade = sc.nextInt();
-                            System.out.print("Digite o preço da diária: ");
-                            double preco = sc.nextDouble();
+                        case 1:
+                            int numero = GerenciamentoQuartoService.lerInteiroPositivo("Digite o número do quarto: ", sc);
+                            String tipo = GerenciamentoQuartoService.lerTipoQuarto("Digite o tipo do quarto (solteiro, casal, suíte): ", sc);
+                            int capacidade = GerenciamentoQuartoService.lerInteiroPositivo("Digite a capacidade do quarto: ", sc);
+                            double preco = GerenciamentoQuartoService.lerDoublePositivo("Digite o preço da diária: ", sc);
                             
                             Quarto novoQuarto = new Quarto(numero, tipo, capacidade, preco);
                             gerenciamentoQuartos.cadastrarQuarto(novoQuarto);
@@ -60,19 +55,16 @@ public class Main {
                         break;
                         
                         case 3:
-                            System.out.print("\nDigite o número do quarto para atualizar o status: ");
-                            int numeroQuarto = sc.nextInt();
-                            sc.nextLine(); 
-                            System.out.print("Digite o novo status (disponível, ocupado, em manutenção): ");
-                            String novoStatus = sc.nextLine();
-                            
+                            int numeroQuarto = GerenciamentoQuartoService.lerInteiroPositivo("Digite o número do quarto para atualizar o status: ", sc);
+                            String novoStatus = GerenciamentoQuartoService.lerStatusQuarto("Digite o novo status (disponível, ocupado, em manutenção): ", sc);
                             gerenciamentoQuartos.atualizarStatusQuarto(numeroQuarto, novoStatus);
                         break;
                         
                         case 4:
                         break;
+                   
                     }
-				break;
+                break;
 				case 2:
 					System.out.println("\n1. Cadastrar novo Hospede");
 					System.out.println("2. Editar Hospede");
