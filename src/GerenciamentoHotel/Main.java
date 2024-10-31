@@ -1,16 +1,22 @@
 package GerenciamentoHotel;
 
+import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Main {
 	
-	public static void main(String[] args) {
+	private static Hospede[] listaHospedes;
+	
+	public static void main(String[] args) throws IOException {
 		
 		GerenciamentoQuartoService gerenciamentoQuartos = new GerenciamentoQuartoService();
 		GerenciadorHospedesService gerenciadorHospedesService = new GerenciadorHospedesService();
 		GerenciadorFuncionariosService gerenciadorFuncionariosService = new GerenciadorFuncionariosService();
-		private static Hospede[] listaHospedes;
-    
+		GerenciadorPessoasService gerenciadorPessoasService = new GerenciadorPessoasService();
+		GerenciadorReservasService gerenciadorReservasService = new GerenciadorReservasService();
+
+		
 		Scanner sc = new Scanner(System.in);
 		int op1, op2;
 		
@@ -79,7 +85,6 @@ public class Main {
 							sc.nextLine();
 							
 							gerenciadorHospedesService.cadastrarHospede();
-							
 						break;
 						case 2: // Editar um hospede
 							sc.nextLine();
@@ -100,7 +105,59 @@ public class Main {
 					}
 				break;
 				case 3:
-					//
+					System.out.println("\n1. Reservar");
+					System.out.println("2. Cancelar reserva");
+					System.out.println("3. Verificar disponibilidade de quartos");
+					System.out.println("4. Voltar");
+					
+					System.out.print("\nDigite a opcao desejada: ");
+					op2 = sc.nextInt();
+					sc.nextLine();
+					
+					switch (op2) {
+					case 1: // Reservar
+						
+					    // Hospede titular, Quarto quarto, String tipoQuarto, int numeroHospedes, LocalDate dataEntrada, LocalDate dataSaida) {
+						System.out.print("\nDigite o cpf do Hospede: ");
+						String cpfHospede = sc.nextLine();
+						
+						if (!gerenciadorPessoasService.isCpfValid(cpfHospede)) {
+							throw new IOException("CPF inválido.");
+						}
+						
+						String tipoQuarto = GerenciamentoQuartoService.lerTipoQuarto("Digite o tipo do quarto (solteiro, casal, suíte): ", sc);
+						
+						Integer qtdeHospedes = GerenciamentoQuartoService.lerInteiroPositivo("\nDigite a qtde de hospedes: ", sc);
+						
+						System.out.print("\nDigite a data de inicio da hospedagem: ");
+						String dataInicio = sc.nextLine();
+						LocalDate dataInicioTratada = gerenciadorReservasService.recebeData(dataInicio);
+						
+						System.out.print("\nDigite a data de fim da hospedagem: ");
+						String dataFim = sc.nextLine();
+						LocalDate dataFimTratada = gerenciadorReservasService.recebeData(dataFim);
+
+//						if (dataFimTratada <= dataInicioTratada) {
+//							// SAMARA
+//							// A BIBLIOTECA PADRAO DO JAVA PARA LIDAR COM DATAS
+//							// NAO SABE COMPARAR DUAS DATAS??????
+//						}
+						
+						// ver se existe esse hospede
+						// ver se existe quarto desse tipo disp
+						// ver se ele tem disp na data
+						
+					break;
+					case 2: // Cancelar reserva
+						//
+					break;
+					case 3: // Verificar disponibilidade de quartos
+						//
+					break;
+					case 4: // Voltar
+						//
+					break;
+					}
 				break;
 				case 4: // Funcionarios
 					
