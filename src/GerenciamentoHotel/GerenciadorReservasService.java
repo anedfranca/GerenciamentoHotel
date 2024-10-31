@@ -28,18 +28,6 @@ public class GerenciadorReservasService {
         }
     }
 
-    public void verificarDisponibilidade(String tipoQuarto, LocalDate dataEntrada, LocalDate dataSaida) {
-        boolean disponivel = reservas.stream()
-                .filter(r -> r.getTipoQuarto().equals(tipoQuarto) && r.isAtiva())
-                .allMatch(r -> r.verificaDisponibilidade(dataEntrada, dataSaida));
-
-        if (disponivel) {
-            System.out.println("Quarto disponível para o tipo: " + tipoQuarto);
-        } else {
-            System.out.println("Não há disponibilidade para o tipo de quarto: " + tipoQuarto + " nas datas selecionadas.");
-        }
-    }
-
     public void listarReservas() {
         if (reservas.isEmpty()) {
             System.out.println("Nenhuma reserva encontrada.");

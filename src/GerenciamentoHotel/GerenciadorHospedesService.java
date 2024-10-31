@@ -41,6 +41,27 @@ public class GerenciadorHospedesService {
 		System.out.println("\nHospede Cadastrado com Sucesso!\n");
 	}
 	
+	public boolean achouHospede(String cpf) {
+		// Encontrar Hospede
+		for (Hospede h : this.listaHospedes) {								
+			if (h.getCpf().equalsIgnoreCase(cpf)) { // Encontrou
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public Hospede buscarHospede(String cpf) {
+		// Encontrar Hospede
+		for (Hospede h : this.listaHospedes) {								
+			if (h.getCpf().equalsIgnoreCase(cpf)) { // Encontrou
+				return h;
+			}
+		}
+		
+		return null;
+	}
+	
 	public void editarHospede(String cpf) {
 		Boolean achou = false;
 		Scanner sc = new Scanner(System.in);

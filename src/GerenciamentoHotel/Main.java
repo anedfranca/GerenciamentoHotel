@@ -2,6 +2,7 @@ package GerenciamentoHotel;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -94,7 +95,7 @@ public class Main {
 							gerenciadorHospedesService.editarHospede(cpfEditar);
 							
 						break;
-						case 3:
+						case 3: // Historico de estadias
 							// precisa ter resereva pronto!!
 						break;
 						case 4:
@@ -123,11 +124,26 @@ public class Main {
 						
 						if (!gerenciadorPessoasService.isCpfValid(cpfHospede)) {
 							throw new IOException("CPF inválido.");
+						} else if (!gerenciadorHospedesService.achouHospede(cpfHospede)) {
+							System.out.print("\nHOSPEDE NÃO ENCONTRADO\n");
+							continue;
 						}
 						
 						String tipoQuarto = GerenciamentoQuartoService.lerTipoQuarto("Digite o tipo do quarto (solteiro, casal, suíte): ", sc);
 						
-						Integer qtdeHospedes = GerenciamentoQuartoService.lerInteiroPositivo("\nDigite a qtde de hospedes: ", sc);
+						boolean temDisponivel = false;
+						for (Quarto quarto : gerenciamentoQuartos.listarQuartosDisponiveis()) {
+							if (quarto.getTipo().equalsIgnoreCase(tipoQuarto)) {
+								temDisponivel = true;
+							}
+						}
+						
+						if (!temDisponivel) {
+							System.out.print("\nNenhum quarto do tipo " + tipoQuarto + " disponivel\n");
+							continue;
+						}
+						
+						Integer qtdeHospedes = GerenciamentoQuartoService.lerInteiroPositivo("Digite a quantidade de hospedes: ", sc);
 						
 						System.out.print("\nDigite a data de inicio da hospedagem: ");
 						String dataInicio = sc.nextLine();
@@ -143,16 +159,47 @@ public class Main {
 //							// NAO SABE COMPARAR DUAS DATAS??????
 //						}
 						
-						// ver se existe esse hospede
-						// ver se existe quarto desse tipo disp
+						System.out.println();
+
 						// ver se ele tem disp na data
+						ArrayList<Integer> numerosDisponiveis = new ArrayList<>();
+						temDisponivel = false;
+						for (Quarto quarto : gerenciamentoQuartos.listarQuartosDisponiveis()) {
+							if (quarto.getTipo().equalsIgnoreCase(tipoQuarto) && quarto.getCapacidade() >= qtdeHospedes) {
+								System.out.print(quarto);
+								numerosDisponiveis.add(quarto.getNumero());
+								temDisponivel = true;
+							}
+						}
+						
+						if (temDisponivel) {
+							System.out.print("\nDigite o número do quarto desejado: ");
+							Integer numero = sc.nextInt();
+							sc.nextLine();
+							
+							if (numerosDisponiveis.contains(numero)) {
+								Hospede hospede = gerenciadorHospedesService.buscarHospede(cpfHospede);
+								Quarto quarto = gerenciamentoQuartos.buscarQuarto(numero);
+								
+								Reserva reserva = new Reserva(hospede, quarto, qtdeHospedes, dataInicioTratada, dataFimTratada);
+								
+								System.out.println();
+								gerenciamentoQuartos.atualizarStatusQuarto(numero, "ocupado");
+								System.out.println("Quarto reservado com Sucesso!");
+							} else {
+								System.out.print("\nNumero de quarto inválido");
+								System.out.println("\nCancelando pedido de reserva...");
+							}
+						} else {
+							System.out.println("\nNenhum quarto disponível :c ");
+						}
 						
 					break;
 					case 2: // Cancelar reserva
 						//
 					break;
 					case 3: // Verificar disponibilidade de quartos
-						//
+						gerenciamentoQuartos.listarQuartos();
 					break;
 					case 4: // Voltar
 						//
