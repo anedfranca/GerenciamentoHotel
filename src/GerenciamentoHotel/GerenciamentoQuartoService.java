@@ -21,6 +21,25 @@ public class GerenciamentoQuartoService {
         }
         return disponiveis;
     }
+    
+    public void listarQuartos() {
+        for (Quarto quarto : quartos) {
+            if (quarto.getStatus().equals("disponível")) {
+            	System.out.println(quarto);
+            }
+        }
+    }
+    
+    public Quarto buscarQuarto(Integer numero) {
+        
+        for (Quarto quarto : quartos) {
+            if (quarto.getNumero() == numero) {
+                return quarto;
+            }
+        }
+        
+        return null;
+    }
 
     public void atualizarStatusQuarto(int numero, String novoStatus) {
         for (Quarto quarto : quartos) {
