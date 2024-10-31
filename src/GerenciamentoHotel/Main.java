@@ -3,10 +3,10 @@ package GerenciamentoHotel;
 import java.util.Scanner;
 
 public class Main {
-
+	
 	public static void main(String[] args) {
 		
-    GerenciamentoQuartoService gerenciamentoQuartos = new GerenciamentoQuartoService();
+		GerenciamentoQuartoService gerenciamentoQuartos = new GerenciamentoQuartoService();
 		GerenciadorHospedesService gerenciadorHospedesService = new GerenciadorHospedesService();
 		GerenciadorFuncionariosService gerenciadorFuncionariosService = new GerenciadorFuncionariosService();
 		
@@ -14,6 +14,7 @@ public class Main {
 		int op1, op2;
 		
 		while (true) {
+
 			System.out.println("\n1. Quartos");
 			System.out.println("2. Hospedes");
 			System.out.println("3. Reservas");
@@ -26,7 +27,7 @@ public class Main {
 			
 			switch (op1) {
 				case 1:
-					          System.out.println("\n1. Cadastrar novo Quarto");
+					System.out.println("\n1. Cadastrar novo Quarto");
                     System.out.println("2. Listar Quartos Disponíveis");
                     System.out.println("3. Atualizar Status de um Quarto");
                     System.out.println("4. Voltar para menu principal");
@@ -58,7 +59,7 @@ public class Main {
                             }
                         break;
                         
-                        case 3: 
+                        case 3:
                             System.out.print("\nDigite o número do quarto para atualizar o status: ");
                             int numeroQuarto = sc.nextInt();
                             sc.nextLine(); 
@@ -68,7 +69,7 @@ public class Main {
                             gerenciamentoQuartos.atualizarStatusQuarto(numeroQuarto, novoStatus);
                         break;
                         
-                        case 4: 
+                        case 4:
                         break;
                     }
 				break;
@@ -162,7 +163,8 @@ public class Main {
 					//
 				break;
 				case 6:
-					//
+					System.out.println("\nSaindo do programa...");
+					System.exit(0);
 				break;
 			}
 		}
