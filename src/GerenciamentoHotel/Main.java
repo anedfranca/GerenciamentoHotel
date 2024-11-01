@@ -63,7 +63,7 @@ public class Main {
                         
                         case 3:
                             int numeroQuarto = GerenciamentoQuartoService.lerInteiroPositivo("Digite o número do quarto para atualizar o status: ", sc);
-                            String novoStatus = GerenciamentoQuartoService.lerStatusQuarto("Digite o novo status (disponível, ocupado, em manutenção): ", sc);
+                            String novoStatus = GerenciamentoQuartoService.lerStatusQuarto("Digite o novo status (disponível, ocupado, reservado ou em manutenção): ", sc);
                             gerenciamentoQuartos.atualizarStatusQuarto(numeroQuarto, novoStatus);
                         break;
                         
@@ -96,7 +96,12 @@ public class Main {
 							
 						break;
 						case 3: // Historico de estadias
-							// precisa ter resereva pronto!!
+							for (Hospede h : gerenciadorHospedesService.getListaHospedes()) {
+								for (Reserva r : h.getHistoricoEstadias()) {
+									System.out.println(h);
+									System.out.println(r);
+								}
+							}
 						break;
 						case 4:
 							// voltar
@@ -152,12 +157,6 @@ public class Main {
 						System.out.print("\nDigite a data de fim da hospedagem: ");
 						String dataFim = sc.nextLine();
 						LocalDate dataFimTratada = gerenciadorReservasService.recebeData(dataFim);
-
-//						if (dataFimTratada <= dataInicioTratada) {
-//							// SAMARA
-//							// A BIBLIOTECA PADRAO DO JAVA PARA LIDAR COM DATAS
-//							// NAO SABE COMPARAR DUAS DATAS??????
-//						}
 						
 						System.out.println();
 
@@ -184,7 +183,9 @@ public class Main {
 								Reserva reserva = new Reserva(hospede, quarto, qtdeHospedes, dataInicioTratada, dataFimTratada);
 								
 								System.out.println();
-								gerenciamentoQuartos.atualizarStatusQuarto(numero, "ocupado");
+								
+								gerenciamentoQuartos.atualizarStatusQuarto(numero, "reservado");
+								gerenciadorReservasService.getReservas().add(reserva);
 								System.out.println("Quarto reservado com Sucesso!");
 							} else {
 								System.out.print("\nNumero de quarto inválido");
@@ -256,7 +257,71 @@ public class Main {
 				}
 				break;
 				case 5:
-					//
+					System.out.println("\n1. Check-in");
+					System.out.println("2. Check-out");
+					System.out.println("3. Voltar");
+					
+					System.out.print("\nDigite a opcao desejada: ");
+					op2 = sc.nextInt();
+					sc.nextLine();
+					
+					switch(op2) {
+						case(1):
+							boolean achou = false;
+							// check-in
+							System.out.print("\nDigite o número do quarto reservado: ");
+							Integer numero = sc.nextInt();
+							sc.nextLine();
+							
+							System.out.print("\nDigite o CPF do responsável da reserva: ");
+							String cpf = sc.nextLine();
+							
+							for (Reserva r : gerenciadorReservasService.getReservas()) {
+								if (r.getTitular().getCpf().equalsIgnoreCase(cpf) && r.getQuarto().getNumero() == numero) {
+									r.getQuarto().setStatus("ocupado");
+									r.getQuarto().setHospede(gerenciadorHospedesService.buscarHospede(cpf));
+									
+									System.out.print("\nCheck-in efetuado com sucesso!\n");
+									achou = true;
+									break;
+								}
+							}
+							if (!achou) System.out.print("\nCheck-in não realizados, dados incorretos!\n");
+							
+						break;
+						case(2):
+							// check-out
+							boolean achouReserva = false;
+						
+							System.out.print("\nDigite o número do quarto reservado: ");
+							Integer numeroQuarto = sc.nextInt();
+							sc.nextLine();
+							
+							System.out.print("\nDigite o CPF do responsável da reserva: ");
+							String cpfHospede = sc.nextLine();
+							
+							for (Reserva r : gerenciadorReservasService.getReservas()) {
+								if (r.getTitular().getCpf().equalsIgnoreCase(cpfHospede) && r.getQuarto().getNumero() == numeroQuarto) {
+									r.getQuarto().setStatus("disponível");
+									r.getQuarto().setHospede(null);
+									gerenciadorHospedesService.buscarHospede(cpfHospede).adicionarEstadiaNoHistorico(r);
+									
+									achouReserva = true;
+									System.out.print("\nCheck-out realizado com sucesso!\n");
+									break;
+								}
+							}
+							
+							if (!achouReserva) System.out.print("\nCheck-out não realizado, dados incorretos!\n");
+	
+						break;
+						case(3):
+							
+						break;
+						default:
+							System.out.println("Opção inválida!\n");
+					}
+					
 				break;
 				case 6:
 					System.out.println("\nSaindo do programa...");

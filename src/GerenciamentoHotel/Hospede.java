@@ -5,12 +5,13 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 public class Hospede extends Pessoa {
 	private LocalDate dataNasc;
 	private String endereco;
 	private String numeroContato;
-	//private ArrayList<reserva> historico = new ArrayList();
+	private ArrayList<Reserva> historicoEstadias = new ArrayList<>();
 	
 	public Hospede() {
 		super();
@@ -77,9 +78,34 @@ public class Hospede extends Pessoa {
 
 	public void setNumeroContato(String numeroContato) {
 		numeroContato = trataEntrada(numeroContato);
+		numeroContato = trataNumeroContato(numeroContato);
 		this.numeroContato = numeroContato;
 	}
-	
-	
 
+	public ArrayList<Reserva> getHistoricoEstadias() {
+		return historicoEstadias;
+	}
+
+	public void setHistoricoEstadias(ArrayList<Reserva> historicoEstadias) {
+		this.historicoEstadias = historicoEstadias;
+	}
+	
+	public void adicionarEstadiaNoHistorico(Reserva reserva) {
+		this.historicoEstadias.add(reserva);
+	}
+	
+	private static String trataNumeroContato(String numeroContato) {
+        Scanner sc = new Scanner(System.in);
+        Pattern pattern = Pattern.compile("\\d{10,11}");
+
+        while (true) {
+            if (pattern.matcher(numeroContato).matches()) {
+                return numeroContato;
+            } else {
+                System.out.println("\nNúmero de contato inválido! Deve conter 10 ou 11 dígitos.");
+                System.out.print("Digite novamente: ");
+                numeroContato = sc.nextLine();
+            }
+        }
+    }
 }

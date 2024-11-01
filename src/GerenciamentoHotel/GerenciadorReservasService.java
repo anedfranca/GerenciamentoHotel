@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class GerenciadorReservasService {
+public class GerenciadorReservasService implements gerenciar {
     private List<Reserva> reservas;
 
     public GerenciadorReservasService() {
@@ -19,7 +19,15 @@ public class GerenciadorReservasService {
 //        System.out.println("Reserva adicionada com sucesso!");
 //    }
 
-    public void cancelarReserva(int indice) {
+    public List<Reserva> getReservas() {
+		return reservas;
+	}
+
+	public void setReservas(List<Reserva> reservas) {
+		this.reservas = reservas;
+	}
+
+	public void cancelarReserva(int indice) {
         if (indice >= 0 && indice < reservas.size() && reservas.get(indice).isAtiva()) {
             reservas.get(indice).cancelar();
             System.out.println("Reserva cancelada com sucesso!");
@@ -61,4 +69,21 @@ public class GerenciadorReservasService {
 	        }
 	    }
 	}
-} 
+	
+	@Override
+	public void listar() {
+		for (Reserva r : reservas) {
+			System.out.println(r);
+		}
+	}
+	
+	@Override
+	public void adicionar(Object r) {
+		this.reservas.add((Reserva) r);
+	}
+	
+	@Override
+	public void remover(Object r) {
+		this.reservas.remove((Reserva) r);
+	}
+}

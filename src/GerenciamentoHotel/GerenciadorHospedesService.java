@@ -2,9 +2,10 @@ package GerenciamentoHotel;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 import java.util.Date;
 
-public class GerenciadorHospedesService {
+public class GerenciadorHospedesService implements gerenciar {
 	
 	private ArrayList<Hospede> listaHospedes;
 	
@@ -12,6 +13,14 @@ public class GerenciadorHospedesService {
 		listaHospedes = new ArrayList<>();
 	}
 	
+	public ArrayList<Hospede> getListaHospedes() {
+		return listaHospedes;
+	}
+
+	public void setListaHospedes(ArrayList<Hospede> listaHospedes) {
+		this.listaHospedes = listaHospedes;
+	}
+
 	public void addHospede(Hospede h) {
 		this.listaHospedes.add(h);
 	}
@@ -98,6 +107,20 @@ public class GerenciadorHospedesService {
 		}
 	}
 	
+	@Override
+	public void listar() {
+		for (Hospede h : listaHospedes) {
+			System.out.println(h);
+		}
+	}
 	
+	@Override
+	public void adicionar(Object h) {
+		this.listaHospedes.add((Hospede) h);
+	}
 	
+	@Override
+	public void remover(Object h) {
+		this.listaHospedes.remove((Hospede) h);
+	}
 }

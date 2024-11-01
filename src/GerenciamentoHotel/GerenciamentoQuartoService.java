@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class GerenciamentoQuartoService {
+public class GerenciamentoQuartoService implements gerenciar {
     private List<Quarto> quartos = new ArrayList<>();
 
     public void cadastrarQuarto(Quarto quarto) {
@@ -104,11 +104,11 @@ public class GerenciamentoQuartoService {
             System.out.print(mensagem);
             tipo = sc.nextLine().toLowerCase().trim();
             if (tipo.isEmpty()) {
-                System.out.println("Entrada vazia. Digite um dos tipos válidos: solteiro, casal ou suíte.");
+                System.out.println("Entrada vazia. Digite um dos tipos válidos: solteiro, casal, reservado ou suíte.");
                 continue;
             }
-            if (!(tipo.equals("solteiro") || tipo.equals("casal") || tipo.equals("suíte"))) {
-                System.out.println("Entrada inválida. Digite um dos tipos válidos: solteiro, casal ou suíte.");
+            if (!(tipo.equals("solteiro") || tipo.equals("casal") || tipo.equals("suíte") || tipo.equals("reservado"))) {
+                System.out.println("Entrada inválida. Digite um dos tipos válidos: solteiro, casal, reservado ou suíte.");
             }
         } while (!(tipo.equals("solteiro") || tipo.equals("casal") || tipo.equals("suíte")));
         return tipo;
@@ -123,11 +123,27 @@ public class GerenciamentoQuartoService {
                 System.out.println("Entrada vazia. Digite um dos status válidos: disponível, ocupado ou em manutenção.");
                 continue;
             }
-            if (!(status.equals("disponível") || status.equals("ocupado") || status.equals("em manutenção"))) {
+            if (!(status.equals("disponível") || status.equals("ocupado") || status.equals("em manutenção") || status.equals("reservado"))) {
                 System.out.println("Entrada inválida. Digite um dos status válidos: disponível, ocupado ou em manutenção.");
             }
-        } while (!(status.equals("disponível") || status.equals("ocupado") || status.equals("em manutenção")));
+        } while (!(status.equals("disponível") || status.equals("ocupado") || status.equals("em manutenção") || status.equals("reservado") ));
         return status;
     }
     
+	@Override
+	public void listar() {
+		for (Quarto q : quartos) {
+			System.out.println(q);
+		}
+	}
+	
+	@Override
+	public void adicionar(Object q) {
+		this.quartos.add((Quarto) q);
+	}
+	
+	@Override
+	public void remover(Object q) {
+		this.quartos.remove((Quarto) q);
+	}
 }
