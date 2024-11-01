@@ -11,7 +11,23 @@ public class Reserva {
     private boolean ativa;
     
 
-    public Reserva(Hospede titular, Quarto quarto, int numeroHospedes, LocalDate dataEntrada, LocalDate dataSaida) {
+    public Hospede getTitular() {
+		return titular;
+	}
+
+	public void setTitular(Hospede titular) {
+		this.titular = titular;
+	}
+
+	public Quarto getQuarto() {
+		return quarto;
+	}
+
+	public void setQuarto(Quarto quarto) {
+		this.quarto = quarto;
+	}
+
+	public Reserva(Hospede titular, Quarto quarto, int numeroHospedes, LocalDate dataEntrada, LocalDate dataSaida) {
         this.titular = titular;
     	this.quarto = quarto;
         this.numeroHospedes = numeroHospedes;

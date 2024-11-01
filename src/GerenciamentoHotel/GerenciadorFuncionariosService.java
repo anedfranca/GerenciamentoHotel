@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Date;
 
-public class GerenciadorFuncionariosService {
+public class GerenciadorFuncionariosService implements gerenciar {
 	
 	private ArrayList<Funcionario> listaFuncionarios;
 	
@@ -112,4 +112,20 @@ public class GerenciadorFuncionariosService {
 		}
 	}
 	
+	@Override
+	public void listar() {
+		for (Funcionario f : listaFuncionarios) {
+			System.out.println(f);
+		}
+	}
+	
+	@Override
+	public void adicionar(Object f) {
+		this.listaFuncionarios.add((Funcionario) f);
+	}
+	
+	@Override
+	public void remover(Object f) {
+		this.listaFuncionarios.remove((Funcionario) f);
+	}
 }

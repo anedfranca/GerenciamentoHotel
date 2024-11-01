@@ -6,8 +6,9 @@ public class Quarto {
     private int capacidade;
     private double preco;
     private String status;
+    private Hospede hospede;
 
-    public Quarto(int numero, String tipo, int capacidade, double preco) {
+	public Quarto(int numero, String tipo, int capacidade, double preco) {
         this.numero = numero;
         this.tipo = tipo;
         this.capacidade = capacidade;
@@ -26,4 +27,12 @@ public class Quarto {
     public String toString() {
         return "Quarto " + numero + " - Tipo: " + tipo + ", Capacidade: " + capacidade + ", Preço: " + preco + ", Status: " + status;
     }
+    
+    public Hospede getHospede() {
+		return hospede;
+	}
+
+	public void setHospede(Hospede hospede) {
+		this.hospede = hospede;
+	}
 }
