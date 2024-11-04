@@ -84,6 +84,11 @@ public class GerenciadorFuncionariosService implements gerenciar {
 				Integer horasTrabalhadas = sc.nextInt();
 				sc.nextLine();
 				
+				if (horasTrabalhadas <= 0) {
+					System.out.println("\nErro! Digite um valor positivo!\n");
+					return;
+				}
+				
 				f.setQtdeHorasTrabalhadas(horasTrabalhadas);
 				break;
 			}
@@ -102,7 +107,16 @@ public class GerenciadorFuncionariosService implements gerenciar {
 			if (f.getCpf().equalsIgnoreCase(cpf)) {
 				achou = true;
 				
-				System.out.println(f.calculaSalario());
+				System.out.print("\nDigite o valor da sua hora: ");
+				Double valorHora = sc.nextDouble();
+				sc.nextLine();
+				if (valorHora > 0) {
+					f.setValorHoras(valorHora);
+					
+					System.out.println(f.calculaSalario());	
+				} else {
+					System.out.print("\nDigite um valor maior que zero!");
+				}
 				break;
 			}
 		}

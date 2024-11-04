@@ -5,7 +5,7 @@ public class Funcionario extends Pessoa {
 	private Double salario;
 	private String turnoDeTrabalho;
 	private Integer qtdeHorasTrabalhadas = 0;
-	private Double valorHoras = 50.0;
+	private Double valorHoras;
 	
 	public Funcionario() {
 		super();
